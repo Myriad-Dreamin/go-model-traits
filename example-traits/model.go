@@ -9,6 +9,13 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
+type ORMObject interface {
+	dorm_crud_dao.ORMObject
+}
+
+type Filter = gorm_crud_dao.Filter
+
+
 type ModelInterface interface {
 	functional.BaseTraitsInterface
 	modeltraits.GORMTraitsInterface

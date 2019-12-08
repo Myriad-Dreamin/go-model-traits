@@ -8,7 +8,7 @@ type CRUDModelInterface interface {
 	Update(d interface{}) (int64, error)
 	Delete(d interface{}) (int64, error)
 	ID(id uint) (obj interface{}, err error)
-	Filter(f *Filter) (objs interface{}, err error)
+	Filter(f *Filter, pObjs interface{}) (err error)
 	Where1(template string) func(id interface{}) (interface{}, error)
 }
 
@@ -22,10 +22,9 @@ type CRUDModel struct {
 	replacement interface{}
 }
 
-
 func NewCRUDModel(t CRUDModelOperationInterface) CRUDModel {
 	return CRUDModel{
-		i: t,
+		i:           t,
 		replacement: t.ObjectFactory(),
 	}
 }

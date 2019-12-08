@@ -20,13 +20,11 @@ func FilterOption(db *gorm.DB, f *Filter) *gorm.DB {
 	return db
 }
 
-func (model CRUDModel) Filter(f *Filter) (interface{}, error) {
-	return model.Filter_(model.i.GetGormDB(), f)
+func (model CRUDModel) Filter(f *Filter, objs interface{}) error {
+	return model.Filter_(model.i.GetGormDB(), f, objs)
 }
 
-func (model CRUDModel) Filter_(db *gorm.DB, f *Filter) (objs interface{}, err error) {
-	objs = model.i.SliceFactory()
-	err = FilterOption(db, f).Find(objs).Error
-	return
+func (model CRUDModel) Filter_(db *gorm.DB, f *Filter, objs interface{}) error {
+	return FilterOption(db, f).Find(objs).Error
 }
 

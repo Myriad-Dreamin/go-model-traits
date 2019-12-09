@@ -14,10 +14,6 @@ type CRUDModelOperationInterface interface {
 	modeltraits.BaseTraitsInterface
 }
 
-type CRUDModelInterface interface {
-	UpdateFields(d ORMObject, fields []string) (int64, error)
-}
-
 type CRUDModel struct {
 	i CRUDModelOperationInterface
 }
